@@ -1,0 +1,8 @@
+scrape_configs:
+  - job_name:       'telemetry'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['docker.for.mac.localhost:9568']
