@@ -29,18 +29,15 @@ init([]) ->
     SupFlags = #{strategy => one_for_all,
                  intensity => 0,
                  period => 1},
-    io:fwrite("Is loaded? ~p", [code:is_loaded(telemetry_poller)]),
     ChildSpecs = [
         telemetry_poller:child_spec([{measurements, [{process_info, [{name, my_app_worker},
                                                                      {event, [my_app, worker]},
                                                                      {keys, [memory, message_queue_len]}]},
-                                                     {emitter, dispatch_session_count, []}]},
+                                                     {emitter, emit_event, []}]},
                                      {period, timer:seconds(5)}, % configure sampling period - default is timer:seconds(5)
                                      {name, emitter_poller}
                                     ])
     ],
-
-    io:fwrite("Is loaded? ~p", [code:is_loaded(telemetry)]),
 
     %todo for now this
     ok = telemetry:attach(
@@ -61,7 +58,6 @@ init([]) ->
         fun log_response_handler:handle_event/4,
         []
     ),
-
 
     {ok, {SupFlags, ChildSpecs}}.
 

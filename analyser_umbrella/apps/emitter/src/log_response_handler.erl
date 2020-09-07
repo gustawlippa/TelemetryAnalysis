@@ -4,7 +4,6 @@
 
 -include_lib("kernel/include/logger.hrl").
 
-
 handle_event([emitter, random_number], #{count := Count, event := Event}, #{where := Path}, _Config) ->
     ?LOG_INFO("Count of ~p is ~p in ~p", [Event, Count, Path]);
 handle_event(Event, Measurements, Metadata, _Config) ->

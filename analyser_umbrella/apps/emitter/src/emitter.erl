@@ -6,9 +6,10 @@
 -module(emitter).
 
 %% API
--export([dispatch_session_count/0]).
+-export([emit_event/0]).
 
-dispatch_session_count() ->
+emit_event() ->
     % emit a telemetry event when called
-    telemetry:execute([emitter, random_number], #{count => rand:uniform(),
-        event => <<"Random event happened!">>}, #{where => ?LINE}).
+    telemetry:execute([emitter, random_number],
+                      #{count => rand:uniform(), event => <<"Random event happened!">>},
+                      #{where => ?LINE}).
