@@ -13,6 +13,7 @@ defmodule Analyser.Worker do
   def handle_event([:emitter, :random_number], measurements, metadata, _config) do
     Logger.info("[Line: #{metadata.where}] #{measurements.event} sent in #{measurements.count}")
   end
+
   ## Callbacks
 
   @impl true

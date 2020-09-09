@@ -9,10 +9,14 @@ defmodule Analyser.Metrics do
 
   defp metrics, do:
     [
-                  last_value("vm.memory.total", unit: :byte),
-                  last_value("vm.total_run_queue_lengths.total"),
-                  last_value("vm.total_run_queue_lengths.cpu"),
-                  last_value("vm.total_run_queue_lengths.io")
+      # My metrics
+      last_value("emitter.random_number.count"),
+
+      # VM metrics
+      last_value("vm.memory.total", unit: :byte),
+      last_value("vm.total_run_queue_lengths.total"),
+      last_value("vm.total_run_queue_lengths.cpu"),
+      last_value("vm.total_run_queue_lengths.io")
     ]
 
 end

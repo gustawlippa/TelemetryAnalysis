@@ -34,7 +34,7 @@ init([]) ->
                                                                      {event, [my_app, worker]},
                                                                      {keys, [memory, message_queue_len]}]},
                                                      {emitter, emit_event, []}]},
-                                     {period, timer:seconds(5)}, % configure sampling period - default is timer:seconds(5)
+                                     {period, 500}, % 500 ms
                                      {name, emitter_poller}
                                     ])
     ],
