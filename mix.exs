@@ -1,4 +1,4 @@
-defmodule AnalyserUmbrella.MixProject do
+defmodule TelemetryAnalysis.MixProject do
   use Mix.Project
 
   def project do
