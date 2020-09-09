@@ -9,3 +9,13 @@ an analyser of Telemetry events.
 The first one is written in Erlang and the latter in Elixir to explore the
 interoperability of the BEAM based languages.
 
+To run the emitter with the analyser simply execute:
+```bash
+iex -S mix
+```
+To run the Prometheus server to see the metrics execute the 
+`prometheus-docker/run.sh` script. It will start a Prometheus docker instance
+which will be available at port `9090`.
+
+An example screenshot:
+![Prometheus screenshot](Prometheus.png)
