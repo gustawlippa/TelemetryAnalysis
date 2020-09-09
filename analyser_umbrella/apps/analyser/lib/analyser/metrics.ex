@@ -9,8 +9,17 @@ defmodule Analyser.Metrics do
 
   defp metrics, do:
     [
-      # My metrics
+      # Metrics from emitter
       last_value("emitter.random_number.count"),
+      last_value("emitter.span.start.system_time", unit: {:native, :second}),
+      counter("emitter_span_exception_sum",
+        event_name: [:emitter, :span, :exception],
+        measurement: :duration),
+      last_value("emitter.span.exception.duration", unit: {:native, :second}),
+      last_value("emitter.span.stop.duration", unit: {:native, :second}),
+
+      # Metric from the analyser
+      counter("analyser.error.detected"),
 
       # VM metrics
       last_value("vm.memory.total", unit: :byte),
