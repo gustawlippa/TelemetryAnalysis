@@ -30,34 +30,32 @@ init([]) ->
                  intensity => 0,
                  period => 1},
     ChildSpecs = [
-        telemetry_poller:child_spec([{measurements, [{process_info, [{name, my_app_worker},
-                                                                     {event, [my_app, worker]},
-                                                                     {keys, [memory, message_queue_len]}]},
-                                                     {emitter, emit_event, []}]},
+        telemetry_poller:child_spec([{measurements, [{emitter, emit_event, []},
+                                                     {emitter, emit_span, []}]},
                                      {period, 500}, % 500 ms
                                      {name, emitter_poller}
                                     ])
     ],
 
-    %todo for now this
-    ok = telemetry:attach(
-        %% unique handler id
-        <<"log-response-handler">>,
-        [emitter, random_number],
-        fun log_response_handler:handle_event/4,
-        []
-    ),
-
-    ok = telemetry:attach_many(
-        <<"log-response-handler-vm">>,
-        [
-            [vm, memory],
-            [vm, total_run_queue_lengths],
-            [vm, system_counts]
-        ],
-        fun log_response_handler:handle_event/4,
-        []
-    ),
+    % to log as emitter
+%%    ok = telemetry:attach(
+%%        %% unique handler id
+%%        <<"log-response-handler">>,
+%%        [emitter, random_number],
+%%        fun log_response_handler:handle_event/4,
+%%        []
+%%    ),
+%%
+%%    ok = telemetry:attach_many(
+%%        <<"log-response-handler-vm">>,
+%%        [
+%%            [vm, memory],
+%%            [vm, total_run_queue_lengths],
+%%            [vm, system_counts]
+%%        ],
+%%        fun log_response_handler:handle_event/4,
+%%        []
+%%    ),
 
     {ok, {SupFlags, ChildSpecs}}.
 
