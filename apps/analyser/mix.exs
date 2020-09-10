@@ -27,6 +27,7 @@ defmodule Analyser.MixProject do
   defp deps do
     [
       {:emitter, in_umbrella: true, manager: :rebar3},
+      {:telemetry_metrics, "~> 0.5"},
       {:telemetry_metrics_prometheus, "~> 0.6"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
